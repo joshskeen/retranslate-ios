@@ -30,8 +30,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="buttonPressed:" destination="-1" eventType="touchDown" id="zs0-kg-999"/>
-                        <action selector="retranslatePressed:" destination="-1" eventType="touchUpInside" id="Ker-GD-lps"/>
+                        <action selector="retranslatePressed:" destination="-1" eventType="touchUpInside" id="dC2-V2-616"/>
                     </connections>
                 </button>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mQ0-h9-je8" customClass="GCPlaceholderTextView">
@@ -52,14 +51,13 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="buttonPressed:" destination="-1" eventType="touchDown" id="dQh-cF-Kab"/>
-                        <action selector="clearRetranslate:" destination="-1" eventType="touchDown" id="quQ-Kd-LEI"/>
+                        <action selector="clearRetranslate:" destination="-1" eventType="touchDown" id="6Tj-VU-66R"/>
                     </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <point key="canvasLocation" x="380.5" y="365.5"/>
+            <point key="canvasLocation" x="402.5" y="395.5"/>
         </view>
         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="uSA-EU-omf">
             <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>

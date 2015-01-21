@@ -25,7 +25,7 @@ struct RetranslateService {
         defaultHeaders["Content-Type"] = RetranslateService.formEncodedContentType
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         configuration.HTTPAdditionalHeaders = defaultHeaders
-
+     
         self.delegate = delegate
         self.manager = Alamofire.Manager(configuration: configuration)
         self.retranslateDataStore = retranslateDataStore
@@ -34,17 +34,15 @@ struct RetranslateService {
     func getRetranslation(startingPhrase:String ){
         let params = ["translation[starting_phrase]":startingPhrase, "api":"true"]
         manager.request(.POST, translationsEndPoint, parameters: params)
-            .responseJSON { (request, response, data, error) in
+            .responseSwiftyJSON { (request, response, json, error) in
                 if( error != nil) {
-                    println("ERROR! \(error)")
-                    //todo: add error callback
+                    println("errr! \(error)")
                 } else {
-                    println("request successful. got : \(data)")
-                    
+                    println("request successful. got : \(json) with response of \(response)")
+                    println("parsed: \(Translation(response: json))")
+                    self.retranslateDataStore.lastTranslation = Translation(response: json)
                 }
         }
     }
     
- 
 }
-

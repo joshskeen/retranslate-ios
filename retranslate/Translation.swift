@@ -9,18 +9,23 @@
 import UIKit
 import SwiftyJSON
 
-struct Translation {
+struct Translation : Printable {
+    
     let startingPhrase:String
     let endingPhrase:String
     let id:Int
+    let translationSteps:[TranslationStep]
     
     init(response:JSON){
-        let translation = response["translation"]
-        
-        startingPhrase = translation["starting_phrase"].stringValue
-        endingPhrase = translation["ending_phrase"].stringValue
-        id = translation["ending_phrase"].intValue
+        let node = response["translation"]
+        startingPhrase = node["starting_phrase"].stringValue
+        endingPhrase = node["ending_phrase"].stringValue
+        id = node["id"].intValue
+        translationSteps = TranslationStep.parseTranslationSteps(response)
     }
     
+    var description: String {
+        return "(id: \(id), \n starting: \(startingPhrase), \n ending: \(endingPhrase), steps: [\(translationSteps)])"
+    }
     
 }

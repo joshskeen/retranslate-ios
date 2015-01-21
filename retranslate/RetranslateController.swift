@@ -27,6 +27,11 @@ class RetranslateController: UIViewController, RequestCallbackDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @IBAction func retranslatePressed(sender: AnyObject){
+        println("begin retranslation request!")
+        service?.getRetranslation("JACK SPRAT COULD EAT NO FAT")
+    }
+    
     @IBAction func clearRetranslate(sender: AnyObject) {
         retranslateText.text = ""
         retranslateText.resignFirstResponder()
@@ -49,9 +54,5 @@ class RetranslateController: UIViewController, RequestCallbackDelegate {
         retranslateText.placeholder = "Enter text to retranslate!"
     }
     
-    
-    @IBAction func retranslatePressed(sender: AnyObject) {
-        service?.getRetranslation(retranslateText.text)
-    }
 
 }

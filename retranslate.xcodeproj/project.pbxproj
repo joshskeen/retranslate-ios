@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A212EA21A70252300CD034A /* TranslationStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A212EA11A70252300CD034A /* TranslationStep.swift */; };
+		1A212EAA1A702B4700CD034A /* TranslationStepResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A212EA91A702B4700CD034A /* TranslationStepResult.swift */; };
 		1A4982E01A6EF5D800E01B73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4982DF1A6EF5D800E01B73 /* AppDelegate.swift */; };
 		1A4982E21A6EF5D800E01B73 /* RetranslateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4982E11A6EF5D800E01B73 /* RetranslateController.swift */; };
 		1A4982E51A6EF5D800E01B73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4982E31A6EF5D800E01B73 /* Main.storyboard */; };
@@ -107,6 +109,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A212EA11A70252300CD034A /* TranslationStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationStep.swift; sourceTree = "<group>"; };
+		1A212EA91A702B4700CD034A /* TranslationStepResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationStepResult.swift; sourceTree = "<group>"; };
 		1A4982DA1A6EF5D800E01B73 /* retranslate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = retranslate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A4982DE1A6EF5D800E01B73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A4982DF1A6EF5D800E01B73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -189,6 +193,8 @@
 				1AD30F3F1A6EFE7700298166 /* GCPlaceholderTextView.m */,
 				1AD30F3E1A6EFE7700298166 /* retranslate-Bridging-Header.h */,
 				1AD30F411A6EFEBD00298166 /* GCPlaceholderTextView.h */,
+				1A212EA11A70252300CD034A /* TranslationStep.swift */,
+				1A212EA91A702B4700CD034A /* TranslationStepResult.swift */,
 			);
 			path = retranslate;
 			sourceTree = "<group>";
@@ -408,7 +414,9 @@
 				1A66285F1A6F4E1000AA1BFA /* RetranslateService.swift in Sources */,
 				1A4982E21A6EF5D800E01B73 /* RetranslateController.swift in Sources */,
 				1AD9926C1A6F4BA9009E507A /* RetranslateDataStore.swift in Sources */,
+				1A212EA21A70252300CD034A /* TranslationStep.swift in Sources */,
 				1AD992701A6F4CC6009E507A /* Translation.swift in Sources */,
+				1A212EAA1A702B4700CD034A /* TranslationStepResult.swift in Sources */,
 				1AD992581A6F42F5009E507A /* Alamofire-SwiftyJSON.swift in Sources */,
 				1A5E25DA1A6FEACF000DBE58 /* RequestCallbackDelegate.swift in Sources */,
 				1A4982E01A6EF5D800E01B73 /* AppDelegate.swift in Sources */,
