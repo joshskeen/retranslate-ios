@@ -12,7 +12,7 @@ import SwiftyJSON
 struct JSONMapper {
     
     static func parseTranslationFromJSON(json:JSON) -> Translation {
-        return Translation(TranslationData: json)
+        return Translation(response: json)
     }
     
 }

@@ -15,7 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        let retranslateController = RetranslateController()
+        let translationDataStore = RetranslateDataStore()
+        let retranslateController = RetranslateController(retranslateDataStore: translationDataStore)
         window!.backgroundColor = UIColor.blackColor()
         window!.rootViewController  = retranslateController
         window!.makeKeyAndVisible()

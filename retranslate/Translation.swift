@@ -14,9 +14,13 @@ struct Translation {
     let endingPhrase:String
     let id:Int
     
-    init(translationJSON:JSON){
-        startingPhrase = translationJSON["translation"]["starting_phrase"].stringValue
-        endingPhrase = translationJSON["translation"]["ending_phrase"].stringValue
-        id = translationJSON["translation"]["ending_phrase"].intValue
+    init(response:JSON){
+        let translation = response["translation"]
+        
+        startingPhrase = translation["starting_phrase"].stringValue
+        endingPhrase = translation["ending_phrase"].stringValue
+        id = translation["ending_phrase"].intValue
     }
+    
+    
 }

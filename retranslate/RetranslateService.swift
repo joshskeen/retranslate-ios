@@ -14,32 +14,37 @@ struct RetranslateService {
     
     static let baseUrl = "http://localhost:3000"
     static let formEncodedContentType:String = "application/x-www-form-urlencoded"
-    static let translationsEndPoint = "\(baseUrl)/translations.json"
-    
+    let translationsEndPoint = "\(baseUrl)/translations.json"
+    let retranslateDataStore:RetranslateDataStore
+    let delegate:RequestCallbackDelegate
     let manager:Alamofire.Manager
     
-    init(){
+    init(delegate:RequestCallbackDelegate, retranslateDataStore:RetranslateDataStore){
+        
         var defaultHeaders = Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders ?? [:]
         defaultHeaders["Content-Type"] = RetranslateService.formEncodedContentType
-
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         configuration.HTTPAdditionalHeaders = defaultHeaders
-        
-        manager = Alamofire.Manager(configuration: configuration)
+
+        self.delegate = delegate
+        self.manager = Alamofire.Manager(configuration: configuration)
+        self.retranslateDataStore = retranslateDataStore
     }
     
     func getRetranslation(startingPhrase:String ){
-        
-        manager.request(.POST, translationsEndPoint, parameters: params).responseJSON { (req, res, json, error) in
-        if(error != nil) {
-            NSLog("Error: \(error)")
-            println(req)
-            println(res)
-        }
-        else {
-            
-            }
+        let params = ["translation[starting_phrase]":startingPhrase, "api":"true"]
+        manager.request(.POST, translationsEndPoint, parameters: params)
+            .responseJSON { (request, response, data, error) in
+                if( error != nil) {
+                    println("ERROR! \(error)")
+                    //todo: add error callback
+                } else {
+                    println("request successful. got : \(data)")
+                    
+                }
         }
     }
     
+ 
 }
+

@@ -8,7 +8,15 @@
 
 import Foundation
 
-struct TranslationData {
+struct RetranslateDataStore {
+    
+    var translations:[Translation]?
+    var lastTranslation:Translation?
+    
+    init(){
+        //todo
+    }
+
     static let languages = [
         "ar": "Arabic",
         "ja": "Japanese",
@@ -50,4 +58,6 @@ struct TranslationData {
         "ms": "Malay",
         "tlh": "Klingon"
     ]
+    
+    
 }

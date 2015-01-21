@@ -31,6 +31,7 @@
                     </state>
                     <connections>
                         <action selector="buttonPressed:" destination="-1" eventType="touchDown" id="zs0-kg-999"/>
+                        <action selector="retranslatePressed:" destination="-1" eventType="touchUpInside" id="Ker-GD-lps"/>
                     </connections>
                 </button>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mQ0-h9-je8" customClass="GCPlaceholderTextView">
