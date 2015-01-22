@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RetranslateController: UIViewController, RequestCallbackDelegate {
+class RetranslateController: UIViewController {
 
     let retranslateDataStore:RetranslateDataStore
     var service:RetranslateService?
@@ -32,12 +32,26 @@ class RetranslateController: UIViewController, RequestCallbackDelegate {
         progressIndicator.startAnimating()
         service?.getRetranslation(retranslateText.text)
         resultsViewController?.pendingReload = true
-        navigationController?.pushViewController(resultsViewController!, animated: true)
+        animateTextBoxOut()
     }
     
-    //service completed request
-    func requestCompleted(requestName: String){
-        progressIndicator.stopAnimating()
+    func animateTextBoxOut(){
+        UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            self.retranslateText.alpha = 0.0
+            }, completion: {
+                finished in
+                println("animateTextBoxOut!")
+                self.navigationController?.pushViewController(self.resultsViewController!, animated: true)
+        })
+    }
+    
+    func animateTextBoxIn(){
+        UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+            self.retranslateText.alpha = 1
+            }, completion: {
+                finished in
+                println("animatedTextBoxIn!")
+        })
     }
     
     override func viewDidLoad() {
@@ -57,6 +71,8 @@ class RetranslateController: UIViewController, RequestCallbackDelegate {
     
     override func viewDidAppear(animated: Bool) {
         progressIndicator.stopAnimating()
+        retranslateText.alpha = 0
+        animateTextBoxIn()
     }
     
 
