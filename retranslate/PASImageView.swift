@@ -1,14 +1,5 @@
 //
 //  PASImageView.swift
-//  retranslate
-//
-//  Created by josh skeen on 1/22/15.
-//  Copyright (c) 2015 josh skeen. All rights reserved.
-//
-
-import UIKit
-//
-//  PASImageView.swift
 //  PASImageView
 //
 //  Created by Pierre Abi-aad on 09/06/2014.

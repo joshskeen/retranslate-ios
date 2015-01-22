@@ -14,6 +14,7 @@ class ResultsViewController: UIViewController, RequestCallbackDelegate {
     var service:RetranslateService?
     var imageView:PASImageView?
     var pendingReload:Bool? = false
+    var originPhrase:String?
     
     @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
     @IBOutlet weak var retranslateButton: UIButton!
@@ -31,6 +32,9 @@ class ResultsViewController: UIViewController, RequestCallbackDelegate {
     }
     
     @IBAction func reReTranslate(sender: AnyObject) {
+        if originPhrase == nil{
+            originPhrase = retranslateDataStore.lastTranslation?.startingPhrase
+        }
         startRetranslation(retranslateDataStore.lastTranslation!.endingPhrase)
     }
     
@@ -52,11 +56,8 @@ class ResultsViewController: UIViewController, RequestCallbackDelegate {
         println(retranslateDataStore.lastTranslation)
         if let x = retranslateDataStore.lastTranslation{
            self.setupRetranslationDisplay()
+            
         }
-    }
-    
-    func startRetranslationFromTranslationStep(translationStep:TranslationStep){
-
     }
     
     func setupRetranslationDisplay(){
@@ -77,6 +78,7 @@ class ResultsViewController: UIViewController, RequestCallbackDelegate {
             enableHistoryButton()
         }
         if pendingReload == true {
+            originPhrase = nil
             disableRetranslateButton()
             progressIndicator.startAnimating()
             animateTextAlphaOut()
@@ -121,12 +123,34 @@ class ResultsViewController: UIViewController, RequestCallbackDelegate {
         println("!!!")
     }
     
+    func toggleFromText(){
+        if let x = originPhrase {
+            if(fromText.text == originalPhrase(x)){
+                fromText.text = formattedFromText()
+            } else {
+                fromText.text = originalPhrase(x)
+            }
+        }
+    }
+    
+    func formattedFromText() -> String {
+        return "from: \(retranslateDataStore.lastTranslation!.startingPhrase)"
+    }
+    
+    func originalPhrase(string:String) -> String{
+        return "originally: \(string)"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         progressIndicator.hidesWhenStopped = true
         service = RetranslateService(delegate: self,  retranslateDataStore: retranslateDataStore)
         imageView = PASImageView(frame: CGRectMake(0, 0, 300, 300))
         view.addSubview(imageView!)
+        let tapGesture = UITapGestureRecognizer(target: self, action: "toggleFromText")
+        tapGesture.numberOfTapsRequired = 1
+        fromText.addGestureRecognizer(tapGesture)
+        fromText.editable = false
         imageView!.center = CGPointMake(view.bounds.width / 2, (view.bounds.height / 2) + 25)
         imageView!.backgroundProgressColor(UIColor.whiteColor())
         imageView!.progressColor(UIColor.redColor())

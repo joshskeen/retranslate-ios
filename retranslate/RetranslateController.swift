@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RetranslateController: UIViewController {
+class RetranslateController: UIViewController, UITextViewDelegate {
 
     let retranslateDataStore:RetranslateDataStore
     var service:RetranslateService?
@@ -54,6 +54,17 @@ class RetranslateController: UIViewController {
         })
     }
     
+    func textViewDidChange(textView: UITextView) {
+        let value = countElements(textView.text)
+        if value >= 4 {
+            retranslateButton.enabled = true
+            retranslateButton.alpha = 1.0
+        } else {
+            retranslateButton.enabled = false
+            retranslateButton.alpha = 0.3
+        }
+    }
+    
     override func viewDidLoad() {
         resultsViewController = ResultsViewController(retranslateDataStore: retranslateDataStore)
         resultsViewController!.pendingReload = true
@@ -67,6 +78,9 @@ class RetranslateController: UIViewController {
         retranslateText.layer.cornerRadius = 10.0
         retranslateText.placeholder = "Enter text to retranslate!"
         progressIndicator.hidesWhenStopped = true
+        retranslateText.delegate = self
+        textViewDidChange(retranslateText)
+        
     }
     
     override func viewDidAppear(animated: Bool) {
