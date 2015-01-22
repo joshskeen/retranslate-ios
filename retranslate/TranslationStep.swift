@@ -90,6 +90,23 @@ struct TranslationStep : Printable {
         return steps.reverse()
     }
     
+    func getEnglishPhrase() -> String {
+        if hasEnglishPhrase() == false{
+            return "i got nothin"
+        }
+        if(fromLanguage == "English"){
+            return startingPhrase
+        }
+        return endingPhrase
+    }
+    
+    func hasEnglishPhrase() -> Bool{
+        if fromLanguage == "English" || toLanguage == "English"{
+            return true
+        }
+        return false
+    }
+    
     var description: String {
         return "(id: \(id)), toLang: \(toLanguage), fromLang\(fromLanguage), start: \(startingPhrase), end: \(endingPhrase)"
     }

@@ -11,7 +11,6 @@ import UIKit
 class ItemCell : UITableViewCell{
 
     @IBOutlet weak var fromLanguage: UILabel!
-    
     @IBOutlet weak var endingPhrase: UITextView!
     @IBOutlet weak var startingPhrase: UITextView!
 }

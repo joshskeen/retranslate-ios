@@ -31,15 +31,19 @@ class ResultsViewController: UIViewController, RequestCallbackDelegate {
     }
     
     @IBAction func reReTranslate(sender: AnyObject) {
+        startRetranslation(retranslateDataStore.lastTranslation!.endingPhrase)
+    }
+    
+    func startRetranslation(phrase:String){
         progressIndicator.startAnimating()
         animateTextAlphaOut()
-        service?.getRetranslation(retranslateDataStore.lastTranslation!.endingPhrase)
+        service?.getRetranslation(phrase)
         disableHistoryButton()
         disableRetranslateButton()
     }
 
     @IBAction func viewHistory(sender: AnyObject) {
-        let rdc = RetranslateHistoryController(retranslateDataStore: retranslateDataStore)
+        let rdc = RetranslateHistoryController(retranslateDataStore: retranslateDataStore, resultsViewController: self)
         navigationController?.pushViewController(rdc, animated: true)
     }
     
@@ -49,6 +53,10 @@ class ResultsViewController: UIViewController, RequestCallbackDelegate {
         if let x = retranslateDataStore.lastTranslation{
            self.setupRetranslationDisplay()
         }
+    }
+    
+    func startRetranslationFromTranslationStep(translationStep:TranslationStep){
+
     }
     
     func setupRetranslationDisplay(){
