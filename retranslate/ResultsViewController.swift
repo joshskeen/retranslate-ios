@@ -13,6 +13,7 @@ class ResultsViewController: UIViewController, RequestCallbackDelegate {
     var retranslateDataStore:RetranslateDataStore
     var service:RetranslateService?
     var imageView:PASImageView?
+    var pendingReload:Bool? = false
     
     @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
     @IBOutlet weak var retranslateButton: UIButton!
@@ -31,6 +32,7 @@ class ResultsViewController: UIViewController, RequestCallbackDelegate {
     
     @IBAction func reReTranslate(sender: AnyObject) {
         progressIndicator.startAnimating()
+        animateTextAlphaOut()
         service?.getRetranslation(retranslateDataStore.lastTranslation!.startingPhrase)
         disableHistoryButton()
         disableRetranslateButton()
@@ -42,6 +44,7 @@ class ResultsViewController: UIViewController, RequestCallbackDelegate {
     }
     
     func requestCompleted(requestName: String){
+        animateTextAlphaIn()
         if let x = retranslateDataStore.lastTranslation{
            self.setupRetranslationDisplay()
         }
@@ -64,6 +67,25 @@ class ResultsViewController: UIViewController, RequestCallbackDelegate {
         } else {
             enableHistoryButton()
         }
+        if pendingReload == true {
+            disableRetranslateButton()
+            progressIndicator.startAnimating()
+            animateTextAlphaOut()
+            pendingReload = false
+        }
+    }
+    
+    func animateTextAlphaIn(){
+        UIView.animateWithDuration(0.3, delay: 0.1, options: .CurveEaseIn, animations: {
+            self.resultsView.alpha = 1.0
+            }, completion: { finished in
+                println("animate alpha up!") })
+    }
+    func animateTextAlphaOut(){
+        UIView.animateWithDuration(0.3, delay: 0.1, options: .CurveEaseOut, animations: {
+            self.resultsView.alpha = 0.3
+            }, completion: { finished in
+                println("animate alpha down!") })
     }
     
     func enableRetranslateButton(){
@@ -93,9 +115,6 @@ class ResultsViewController: UIViewController, RequestCallbackDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         progressIndicator.hidesWhenStopped = true
-        
-        
-        
         service = RetranslateService(delegate: self,  retranslateDataStore: retranslateDataStore)
         imageView = PASImageView(frame: CGRectMake(0, 0, 300, 300))
         view.addSubview(imageView!)

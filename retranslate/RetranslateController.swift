@@ -31,6 +31,7 @@ class RetranslateController: UIViewController, RequestCallbackDelegate {
     @IBAction func retranslatePressed(sender: AnyObject){
         progressIndicator.startAnimating()
         service?.getRetranslation(retranslateText.text)
+        resultsViewController?.pendingReload = true
         navigationController?.pushViewController(resultsViewController!, animated: true)
     }
     
@@ -41,9 +42,13 @@ class RetranslateController: UIViewController, RequestCallbackDelegate {
     
     override func viewDidLoad() {
         resultsViewController = ResultsViewController(retranslateDataStore: retranslateDataStore)
+        resultsViewController!.pendingReload = true
         service = RetranslateService(delegate: resultsViewController!,  retranslateDataStore: retranslateDataStore)
         retranslateText.text = ""
         retranslateText.layer.borderWidth = 1.0
+        let color = UIColor.lightGrayColor().CGColor
+        retranslateText.layer.borderColor = color
+        retranslateText.layer.opacity = 0.7
         retranslateText.clipsToBounds = true
         retranslateText.layer.cornerRadius = 10.0
         retranslateText.placeholder = "Enter text to retranslate!"
