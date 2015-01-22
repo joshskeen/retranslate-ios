@@ -38,9 +38,9 @@ struct RetranslateService {
                 if( error != nil) {
                     println("errr! \(error)")
                 } else {
-                    println("request successful. got : \(json) with response of \(response)")
-                    println("parsed: \(Translation(response: json))")
+                    println("request succeeded! \(response)")
                     self.retranslateDataStore.lastTranslation = Translation(response: json)
+                    self.delegate.requestCompleted("getTranslation")
                 }
         }
     }

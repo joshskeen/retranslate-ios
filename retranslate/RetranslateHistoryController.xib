@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RetranslateController" customModule="retranslate" customModuleProvider="target">
             <connections>
-                <outlet property="clearRetranslation" destination="idN-rZ-30E" id="NrL-NA-Sne"/>
+                <outlet property="progressIndicator" destination="Oqq-MJ-96g" id="Kc2-mQ-rUw"/>
                 <outlet property="retranslateButton" destination="oLJ-rP-Xc7" id="uKl-9i-4nY"/>
                 <outlet property="retranslateText" destination="mQ0-h9-je8" id="x48-nL-Nvc"/>
                 <outlet property="view" destination="frJ-Yb-8mm" id="CcK-lh-yj9"/>
@@ -25,8 +25,12 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oLJ-rP-Xc7">
-                    <rect key="frame" x="79" y="221" width="85" height="30"/>
+                    <rect key="frame" x="8" y="443" width="359" height="54"/>
+                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="Retranslate">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -34,30 +38,18 @@
                     </connections>
                 </button>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mQ0-h9-je8" customClass="GCPlaceholderTextView">
-                    <rect key="frame" x="8" y="84" width="359" height="128"/>
+                    <rect key="frame" x="8" y="110" width="359" height="222"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phrase to Retranslate:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILn-uj-4DB">
-                    <rect key="frame" x="8" y="44" width="359" height="39"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idN-rZ-30E">
-                    <rect key="frame" x="196" y="222" width="85" height="30"/>
-                    <state key="normal" title="Clear">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="clearRetranslate:" destination="-1" eventType="touchDown" id="6Tj-VU-66R"/>
-                    </connections>
-                </button>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Oqq-MJ-96g">
+                    <rect key="frame" x="177" y="353" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <point key="canvasLocation" x="402.5" y="395.5"/>
+            <point key="canvasLocation" x="402.5" y="407.5"/>
         </view>
         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="uSA-EU-omf">
             <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>

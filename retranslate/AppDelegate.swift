@@ -16,28 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let translationDataStore = RetranslateDataStore()
-        let retranslateController = RetranslateController(retranslateDataStore: translationDataStore)
+        let rtc = RetranslateController(retranslateDataStore: translationDataStore)
+//        let rvc = ResultsViewController(retranslateDataStore: translationDataStore)
+        let nav = UINavigationController(rootViewController: rtc)
+        
         window!.backgroundColor = UIColor.blackColor()
-        window!.rootViewController  = retranslateController
+        window!.rootViewController  = nav
         window!.makeKeyAndVisible()
         return true
     }
 
-    func applicationWillResignActive(application: UIApplication) {
-    }
-
-    func applicationDidEnterBackground(application: UIApplication) {
-    }
-
-    func applicationWillEnterForeground(application: UIApplication) {
-    }
-
-    func applicationDidBecomeActive(application: UIApplication) {
-    }
-
-    func applicationWillTerminate(application: UIApplication) {
-    }
-
-
 }
-

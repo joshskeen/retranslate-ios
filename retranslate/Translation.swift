@@ -11,12 +11,14 @@ import SwiftyJSON
 
 struct Translation : Printable {
     
+    let imgUrl:String
     let startingPhrase:String
     let endingPhrase:String
     let id:Int
     let translationSteps:[TranslationStep]
     
     init(response:JSON){
+        imgUrl = response["image"].stringValue
         let node = response["translation"]
         startingPhrase = node["starting_phrase"].stringValue
         endingPhrase = node["ending_phrase"].stringValue
@@ -25,7 +27,7 @@ struct Translation : Printable {
     }
     
     var description: String {
-        return "(id: \(id), \n starting: \(startingPhrase), \n ending: \(endingPhrase), steps: [\(translationSteps)])"
+        return "(imgUrl: \(imgUrl), id: \(id), \n starting: \(startingPhrase), \n ending: \(endingPhrase), steps: [\(translationSteps)])"
     }
     
 }

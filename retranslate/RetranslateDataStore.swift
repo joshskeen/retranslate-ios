@@ -16,4 +16,4 @@ class RetranslateDataStore {
     init(){
     }
     
-}
+}   

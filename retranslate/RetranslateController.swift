@@ -7,20 +7,21 @@
 //
 
 import UIKit
-import AlamoFire
-import SwiftyJSON
 
 class RetranslateController: UIViewController, RequestCallbackDelegate {
 
     var retranslateDataStore:RetranslateDataStore
     var service:RetranslateService?
+    var resultsViewController:ResultsViewController?
     @IBOutlet weak var retranslateText: GCPlaceholderTextView!
     @IBOutlet weak var retranslateButton: UIButton!
     @IBOutlet weak var clearRetranslation: UIButton!
+    @IBOutlet weak var retranslationList: UITableView!
+    @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
     
     init(retranslateDataStore: RetranslateDataStore){
         self.retranslateDataStore = retranslateDataStore
-        super.init(nibName: "RetranslateView", bundle: nil)
+        super.init(nibName: "RetranslateController", bundle: nil)
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -28,30 +29,29 @@ class RetranslateController: UIViewController, RequestCallbackDelegate {
     }
     
     @IBAction func retranslatePressed(sender: AnyObject){
-        println("begin retranslation request!")
-        service?.getRetranslation("JACK SPRAT COULD EAT NO FAT")
+        progressIndicator.startAnimating()
+        service?.getRetranslation(retranslateText.text)
+        navigationController?.pushViewController(resultsViewController!, animated: true)
     }
     
-    @IBAction func clearRetranslate(sender: AnyObject) {
-        retranslateText.text = ""
-        retranslateText.resignFirstResponder()
-    }
-
     //service completed request
     func requestCompleted(requestName: String){
-        println("request completed. Request: \(requestName). Update UI")
+        progressIndicator.stopAnimating()
     }
     
     override func viewDidLoad() {
-        service = RetranslateService(delegate: self,  retranslateDataStore: retranslateDataStore)
-    }
-    
-    override func viewDidAppear(animated: Bool) {
+        resultsViewController = ResultsViewController(retranslateDataStore: retranslateDataStore)
+        service = RetranslateService(delegate: resultsViewController!,  retranslateDataStore: retranslateDataStore)
         retranslateText.text = ""
         retranslateText.layer.borderWidth = 1.0
         retranslateText.clipsToBounds = true
         retranslateText.layer.cornerRadius = 10.0
         retranslateText.placeholder = "Enter text to retranslate!"
+        progressIndicator.hidesWhenStopped = true
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        progressIndicator.stopAnimating()
     }
     
 

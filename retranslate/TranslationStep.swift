@@ -66,7 +66,6 @@ struct TranslationStep : Printable {
         "ms": "Malay",
         "tlh": "Klingon"
     ]
-
     
     let id:Int
     let toLanguage:String
@@ -88,7 +87,7 @@ struct TranslationStep : Printable {
         for stepJson in translationSteps {
             steps.append(TranslationStep(stepJson.1))
         }
-        return steps
+        return steps.reverse()
     }
     
     var description: String {
