@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ResultsViewController: UIViewController, RequestCallbackDelegate {
     
@@ -69,6 +70,9 @@ class ResultsViewController: UIViewController, RequestCallbackDelegate {
         if let anURL = NSURL(string: retranslateDataStore.lastTranslation!.imgUrl) {
             imageView!.imageURL(anURL)
         }
+        let synth = AVSpeechSynthesizer()
+        let utterance = AVSpeechUtterance(string: retranslateDataStore.lastTranslation!.endingPhrase)
+        synth.speakUtterance(utterance)
     }
     
     override func viewDidAppear(animated: Bool) {
