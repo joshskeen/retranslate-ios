@@ -10,7 +10,7 @@ import UIKit
 
 class RetranslateController: UIViewController, RequestCallbackDelegate {
 
-    var retranslateDataStore:RetranslateDataStore
+    let retranslateDataStore:RetranslateDataStore
     var service:RetranslateService?
     var resultsViewController:ResultsViewController?
     @IBOutlet weak var retranslateText: GCPlaceholderTextView!

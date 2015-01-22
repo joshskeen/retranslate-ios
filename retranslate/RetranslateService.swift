@@ -40,6 +40,7 @@ struct RetranslateService {
                 } else {
                     println("request succeeded! \(response)")
                     self.retranslateDataStore.lastTranslation = Translation(response: json)
+                    println("parsed: \(json)"   )
                     self.delegate.requestCompleted("getTranslation")
                 }
         }

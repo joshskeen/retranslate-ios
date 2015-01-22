@@ -10,7 +10,7 @@ import UIKit
 
 class ResultsViewController: UIViewController, RequestCallbackDelegate {
     
-    var retranslateDataStore:RetranslateDataStore
+    let retranslateDataStore:RetranslateDataStore
     var service:RetranslateService?
     var imageView:PASImageView?
     var pendingReload:Bool? = false
@@ -33,7 +33,7 @@ class ResultsViewController: UIViewController, RequestCallbackDelegate {
     @IBAction func reReTranslate(sender: AnyObject) {
         progressIndicator.startAnimating()
         animateTextAlphaOut()
-        service?.getRetranslation(retranslateDataStore.lastTranslation!.startingPhrase)
+        service?.getRetranslation(retranslateDataStore.lastTranslation!.endingPhrase)
         disableHistoryButton()
         disableRetranslateButton()
     }
@@ -45,6 +45,7 @@ class ResultsViewController: UIViewController, RequestCallbackDelegate {
     
     func requestCompleted(requestName: String){
         animateTextAlphaIn()
+        println(retranslateDataStore.lastTranslation)
         if let x = retranslateDataStore.lastTranslation{
            self.setupRetranslationDisplay()
         }
